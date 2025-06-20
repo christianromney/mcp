@@ -71,7 +71,6 @@ Yes, the service follows "Simple Made Easy" principles:
 
 ## Benefits
 - **Dual transport support**: Both stdio and HTTP interfaces maximize compatibility
-- **Financial precision**: BigDecimal arithmetic ensures accurate cost calculations
 - **Standard protocol**: MCP compliance enables seamless LLM integration
 - **Lightweight**: Minimal dependencies and simple architecture
 
@@ -87,7 +86,6 @@ This service is a good fit when:
 - You need token cost estimation for GPT-style models
 - You want MCP-compliant integration with LLM systems
 - You require both programmatic (CLI) and web-based access
-- Financial precision in cost calculations is important
 - You need a lightweight, stateless service
 
 # Key indicators against use
@@ -95,6 +93,7 @@ This service is a good fit when:
 This service is a poor fit when:
 - You need tokenization for non-GPT models
 - You require authentication or advanced security
+- You need very precise cost estimates
 - You need high-throughput, concurrent processing  
 - You want persistent storage or state management
 - You need complex text processing beyond token counting
