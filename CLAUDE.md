@@ -18,8 +18,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Via main function: `clojure -M:run-m` (default) or `clojure -M:run-m CustomName`
 
 ### MCP Server
-- Start MCP server: `clojure -M:mcp-server`
-- The server exposes an `estimate_cost` tool that calculates token costs for text
+- Start MCP server (stdio): `clojure -M:mcp-server`
+- Start MCP HTTP server: `clojure -M:mcp-http-server` (default port 3000) or `clojure -M:mcp-http-server 8080` (custom port)
+- Both servers expose an `estimate_cost` tool that calculates token costs for text
+- HTTP server accepts JSON-RPC requests via POST to the root endpoint
 
 ## Project Structure
 
@@ -27,9 +29,11 @@ This is a Clojure application using `tools.build` for build automation and `tool
 
 ### Key Components
 - **Main namespace**: `achilles.mcp` - Contains the estimate-cost` function, and `-main` entry point
-- **MCP server**: `achilles.mcp-server` - Model Context Protocol server exposing estimate-cost as a tool for LLMs
+- **MCP core logic**: `achilles.mcp-core` - Transport-agnostic MCP protocol implementation shared by both servers
+- **MCP stdio server**: `achilles.mcp-server` - Model Context Protocol server using stdin/stdout for communication
+- **MCP HTTP server**: `achilles.mcp-http-server` - Model Context Protocol server using HTTP for communication
 - **Build configuration**: `build.clj` - Defines test and CI pipeline functions using `clojure.tools.build.api`
-- **Dependencies**: `deps.edn` - Standard tools.deps configuration with aliases for running, testing, building, and MCP server
+- **Dependencies**: `deps.edn` - Standard tools.deps configuration with aliases for running, testing, building, and MCP servers
 
 ### Architecture
 The project follows standard Clojure project conventions:
